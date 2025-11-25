@@ -8,7 +8,6 @@ const productsRoutes =require('./routes/products')
 const passport = require('passport');
 const cartRoutes = require('./routes/cart');
 
-
 require('dotenv').config();
 require('./controllers/googleAuth');
 
@@ -18,11 +17,11 @@ app.use(cors({
         "http://localhost:5173",  
         "https://amazon-project-frontend.vercel.app"
     ],
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
     credentials: true,
-    optionsSuccessStatus: 200
 }));
 
+app.options("*", cors());
 
 app.use(express.json());
 app.use(express.static('public'));

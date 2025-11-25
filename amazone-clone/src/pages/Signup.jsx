@@ -20,7 +20,7 @@ function Signup() {
       await axios.post("https://amazon-project-backend-fz5r.onrender.com/api/auth/signup", form);
       setMessage("Signup successful! Please login.");
       setTimeout(() => {
-        navigate("/login", { replace: true });
+        navigate("/", { replace: true });
       }, 1000); 
     } catch (err) {
       setMessage(
