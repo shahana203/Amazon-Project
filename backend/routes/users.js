@@ -26,15 +26,24 @@ router.post('/signup', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-  const { email, mobile, password } = req.body;
+  const { email, password } = req.body;
 
-  if (!email && !mobile) return res.status(400).json({ error: 'Enter email or mobile' });
+  // if (!email && !mobile) return res.status(400).json({ error: 'Enter email or mobile' });
+
+let user;
+if (email && email.includes('@')) {
+  user = await User.findOne({ email });
+} else {
+  user = await User.findOne({ mobile: email });
+}
+
 
    if (!password) {
     return res.status(400).json({ error: 'Password is required' });
   }
 
-  const user = await User.findOne({ $or: [{ email }, { mobile }] });
+  // const user = await User.findOne({ $or: [{ email }, { mobile }] });
+  // if (!user) return res.status(400).json({ error: 'Invalid credentials' });
   if (!user) return res.status(400).json({ error: 'Invalid credentials' });
 
   // ⚠ FIX 2: if the user was created by Google, password is undefined → prevent crash
