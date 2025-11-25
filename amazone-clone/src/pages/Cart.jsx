@@ -38,7 +38,7 @@ function Cart() {
             {cartItemsDetailed.map(prod => (
               <div key={prod._id} className="flex items-center mb-6 border-b pb-3">
                 <img
-                  src={`https://amazon-project-backend.vercel.app/${prod.image}`}
+                  src={`https://amazon-project-backend-fz5r.onrender.com/${prod.image}`}
                   alt={prod.name}
                   className="w-20 h-20 object-contain rounded mr-4"
                 />

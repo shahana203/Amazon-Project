@@ -17,7 +17,7 @@ function Signup() {
     e.preventDefault();
     setMessage('');
     try {
-      await axios.post("https://amazon-project-backend.vercel.app/api/auth/signup", form);
+      await axios.post("https://amazon-project-backend-fz5r.onrender.com/api/auth/signup", form);
       setMessage("Signup successful! Please login.");
       setTimeout(() => {
         navigate("/login", { replace: true });
@@ -33,7 +33,7 @@ function Signup() {
     setMessage('');
     const token = credentialResponse.credential;
     try {
-      const res = await axios.post('https://amazon-project-backend.vercel.app/api/auth/google-signin', { token });
+      const res = await axios.post('https://amazon-project-backend-fz5r.onrender.com/api/auth/google-signin', { token });
       
       setMessage("Google Signup successful! Welcome.");
       navigate("/", { replace: true });

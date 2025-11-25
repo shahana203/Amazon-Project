@@ -26,7 +26,7 @@ function Login() {
     e.preventDefault();
     setMessage('');
     try {
-      const res = await axios.post("https://amazon-project-backend.vercel.app/api/auth/login", form);
+      const res = await axios.post("https://amazon-project-backend-fz5r.onrender.com/api/auth/login", form);
       saveAuthData(res.data.token, res.data.user);
       setMessage("Login successful! Welcome.");
       navigate(from, { replace: true }); // <-- Redirect on success
@@ -39,7 +39,7 @@ function Login() {
     setMessage('');
     const token = credentialResponse.credential;
     try {
-      const res = await axios.post('https://amazon-project-backend.vercel.app/api/auth/google-signin', { token });
+      const res = await axios.post('https://amazon-project-backend-fz5r.onrender.com/api/auth/google-signin', { token });
       saveAuthData(res.data.token, res.data.user);
       setMessage("Google Login successful! Welcome.");
       navigate(from, { replace: true }); // <-- Redirect on success

@@ -24,7 +24,7 @@ function Checkout() {
     e.preventDefault();
     if (!address) return setError("Address required.");
     try {
-      await axios.post('https://amazon-project-backend.vercel.app/api/orders', {
+      await axios.post('https://amazon-project-backend-fz5r.onrender.com/api/orders', {
         address,
         payment
       }, {

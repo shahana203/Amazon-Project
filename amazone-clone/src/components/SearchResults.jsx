@@ -15,7 +15,7 @@ function SearchResults() {
 
   useEffect(() => {
     setLoading(true);
-    axios.get('https://amazon-project-backend.vercel.app/api/products')
+    axios.get('https://amazon-project-backend-fz5r.onrender.com/api/products')
       .then(res => setAllProducts(res.data))
       .catch(() => setAllProducts([]))
       .finally(() => setLoading(false));
@@ -38,7 +38,7 @@ function SearchResults() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {filtered.map(prod => (
               <Link to={`/product/${prod._id}`} key={prod._id} className="bg-gray-50 rounded shadow p-4 hover:scale-105">
-                <img src={`https://amazon-project-backend.vercel.app/${prod.image}`} alt={prod.name} className="w-32 h-32 mx-auto object-contain mb-2" />
+                <img src={`https://amazon-project-backend-fz5r.onrender.com/${prod.image}`} alt={prod.name} className="w-32 h-32 mx-auto object-contain mb-2" />
                 <div className="font-bold">{prod.name}</div>
                 <div className="text-gray-900 font-bold text-base">₹{Math.round(prod.priceCents)}</div>
               </Link>
