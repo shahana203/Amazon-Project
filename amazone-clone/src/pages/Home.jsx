@@ -47,37 +47,45 @@ function Home() {
       <Navbar />
 
       <div className="flex gap-4 my-4 justify-center flex-wrap">
-        {categories.map(cat => (
-          <button
-            key={cat.value}
-            onClick={() => setSelectedCategory(cat.value)}
-            className={`px-4 py-2 rounded-lg font-medium border shadow transition 
-              ${selectedCategory === cat.value ? 'bg-[#ffd814] text-black' : 'bg-white text-gray-700'}`}
-          >
-            {cat.label}
-          </button>
-        ))}
-      </div>
+  {categories.map(cat => (
+    <button
+      key={cat.value}
+      onClick={() => setSelectedCategory(cat.value)}
+      className={`px-4 py-2 rounded-lg font-medium border shadow transition 
+        ${selectedCategory === cat.value ? 'bg-[#ffd814] text-black' : 'bg-white text-gray-700'}`}
+    >
+      {cat.label}
+    </button>
+  ))}
+</div>
 
-      <div className="w-full h-52 bg-linear-to-r from-blue-200 via-yellow-50 to-yellow-100 flex items-center justify-center mb-4 mt-2 rounded-lg shadow-lg">
-        <div className="flex items-center justify-center w-full px-6">
-          <img
-            src="images/promo-banner2.jpg"
-            alt="Promo"
-            className="hidden sm:block h-44 w-auto rounded shadow-lg ml-8"
-          />
-          <div className="flex-1 text-center">
-            <div className="text-3xl sm:text-4xl font-extrabold text-gray-700 mb-2">Super Value Days</div>
-            <div className="text-lg sm:text-xl text-gray-800 font-semibold">Best Deals, Fast Delivery – Shop Now</div>
-            <div className="mt-2 text-sm font-normal text-gray-600">Extra offers on fashion & home appliances</div>
-          </div>
-          <img
-            src="images/promo-banner.jpg"
-            alt="Promo"
-            className="hidden sm:block h-44 w-auto rounded shadow-lg ml-8"
-          />
-        </div>
-      </div>
+<div className="w-full min-h-52 bg-linear-to-r from-blue-200 via-yellow-50 to-yellow-100 flex items-center justify-center mb-4 mt-2 rounded-lg shadow-lg">
+  <div className="flex flex-col sm:flex-row items-center justify-center w-full px-2 sm:px-6 gap-y-4">
+    {/* Banner Image - mobile only */}
+    <img
+      src="images/promo-banner2.jpg"
+      alt="Promo"
+      className="block sm:hidden w-full h-32 object-cover rounded shadow-lg mb-2"
+    />
+    {/* Banner Image - left desktop */}
+    <img
+      src="images/promo-banner2.jpg"
+      alt="Promo"
+      className="hidden sm:block h-44 w-auto rounded shadow-lg ml-8"
+    />
+    <div className="flex-1 text-center px-2">
+      <div className="text-2xl sm:text-4xl font-extrabold text-gray-700 mb-2">Super Value Days</div>
+      <div className="text-base sm:text-xl text-gray-800 font-semibold">Best Deals, Fast Delivery – Shop Now</div>
+      <div className="mt-2 text-sm font-normal text-gray-600">Extra offers on fashion & home appliances</div>
+    </div>
+    {/* Banner Image - right desktop */}
+    <img
+      src="images/promo-banner.jpg"
+      alt="Promo"
+      className="hidden sm:block h-44 w-auto rounded shadow-lg ml-8"
+    />
+  </div>
+</div>
 
       <div className="max-w-[1200px] mx-auto p-4">
         {loading ? (
