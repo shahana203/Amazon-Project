@@ -13,13 +13,13 @@ require('dotenv').config();
 require('./controllers/googleAuth');
 
 const app = express();
-app.use(cors({origin: [
-        "https://amazon-project-murex.vercel.app/",
-        
-      
+app.use(cors({
+    origin: [
+        "http://localhost:5173",  
+        "https://amazon-project-murex.vercel.app" 
     ],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true, 
+    credentials: true,
     optionsSuccessStatus: 200
 }));
 
