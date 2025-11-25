@@ -13,7 +13,7 @@ function Orders() {
     async function fetchOrders() {
       setLoading(true);
       try {
-        const { data } = await axios.get("http://localhost:5005/api/orders", {
+        const { data } = await axios.get("https://amazon-project-backend.vercel.app/api/orders", {
           headers: { Authorization: `Bearer ${token}` }
         });
         setOrders(data);

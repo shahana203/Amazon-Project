@@ -28,7 +28,7 @@ function Home() {
       setLoading(true);
       setError('');
       try {
-        const { data } = await axios.get('http://localhost:5005/api/products');
+        const { data } = await axios.get('https://amazon-project-backend.vercel.app/api/products');
         setProducts(data);
       } catch (err) {
         setError('Failed to load products');
@@ -90,7 +90,7 @@ function Home() {
               <Link to={`/product/${product._id}`} key={product._id} className="hover:scale-105 transition">
                 <div className="bg-white rounded-xl shadow-lg px-6 py-8 flex flex-col items-center">
                   {/* Use backend-served image URL */}
-                  <img src={`http://localhost:5005/${product.image}`} alt={product.name} className="w-28 h-28 mb-3 object-contain" />
+                  <img src={`https://amazon-project-backend.vercel.app/${product.image}`} alt={product.name} className="w-28 h-28 mb-3 object-contain" />
                   <div className="font-semibold mb-2 text-center">{product.name}</div>
                   <div className="flex mb-2 text-yellow-500 text-lg font-bold">
                     {'★'.repeat(Math.floor(product.rating?.stars || 0))}

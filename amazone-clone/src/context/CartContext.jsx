@@ -15,7 +15,7 @@ export function CartProvider({ children }) {
     async function fetchCart() {
       if (!token) return;
       try {
-        const { data } = await axios.get('http://localhost:5005/api/cart', {
+        const { data } = await axios.get('https://amazon-project-backend.vercel.app/api/cart', {
           headers: { Authorization: `Bearer ${token}` }
         });
         setCartItems(data.items || []);
@@ -28,12 +28,12 @@ export function CartProvider({ children }) {
 
   const addToCart = async (product) => {
     if (!token || !product || !product._id) return;
-    await axios.post('http://localhost:5005/api/cart/add', {
+    await axios.post('https://amazon-project-backend.vercel.app/api/cart/add', {
       productId: product._id,
       quantity: 1
     }, { headers: { Authorization: `Bearer ${token}` } });
 
-    const { data } = await axios.get('http://localhost:5005/api/cart', {
+    const { data } = await axios.get('https://amazon-project-backend.vercel.app/api/cart', {
       headers: { Authorization: `Bearer ${token}` }
     });
     setCartItems(data.items || []);
@@ -41,11 +41,11 @@ export function CartProvider({ children }) {
 
   const updateQuantity = async (productId, quantity) => {
     if (!token) return;
-    await axios.post('http://localhost:5005/api/cart/update', {
+    await axios.post('https://amazon-project-backend.vercel.app/api/cart/update', {
       productId, quantity
     }, { headers: { Authorization: `Bearer ${token}` } });
 
-    const { data } = await axios.get('http://localhost:5005/api/cart', {
+    const { data } = await axios.get('https://amazon-project-backend.vercel.app/api/cart', {
       headers: { Authorization: `Bearer ${token}` }
     });
     setCartItems(data.items || []);
@@ -53,11 +53,11 @@ export function CartProvider({ children }) {
 
   const removeFromCart = async (productId) => {
     if (!token) return;
-    await axios.post('http://localhost:5005/api/cart/remove', {
+    await axios.post('https://amazon-project-backend.vercel.app/api/cart/remove', {
       productId
     }, { headers: { Authorization: `Bearer ${token}` } });
 
-    const { data } = await axios.get('http://localhost:5005/api/cart', {
+    const { data } = await axios.get('https://amazon-project-backend.vercel.app/api/cart', {
       headers: { Authorization: `Bearer ${token}` }
     });
     setCartItems(data.items || []);

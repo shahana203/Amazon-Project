@@ -17,11 +17,11 @@ function Signup() {
     e.preventDefault();
     setMessage('');
     try {
-      await axios.post("http://localhost:5005/api/auth/signup", form);
+      await axios.post("https://amazon-project-backend.vercel.app/api/auth/signup", form);
       setMessage("Signup successful! Please login.");
       setTimeout(() => {
-        navigate("/login", { replace: true }); // <-- Redirect to login after success
-      }, 1000); // Give user brief visual feedback (optional)
+        navigate("/login", { replace: true });
+      }, 1000); 
     } catch (err) {
       setMessage(
         err.response?.data?.error || "Signup failed. Try again."
@@ -33,10 +33,10 @@ function Signup() {
     setMessage('');
     const token = credentialResponse.credential;
     try {
-      const res = await axios.post('http://localhost:5005/api/auth/google-signin', { token });
-      // Optionally save res.data.token and user if needed
+      const res = await axios.post('https://amazon-project-backend.vercel.app/api/auth/google-signin', { token });
+      
       setMessage("Google Signup successful! Welcome.");
-      navigate("/", { replace: true }); // <-- Redirect after Google signup
+      navigate("/", { replace: true });
     } catch (err) {
       setMessage(err.response?.data?.error || "Google Signup failed.");
     }

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 
 function Cart() {
-  // cartItems from context (already fetched from backend and are objects with .product populated!)
+
   const { cartItems, updateQuantity, removeFromCart } = useCart();
   const navigate = useNavigate();
 
@@ -13,12 +13,12 @@ function Cart() {
     navigate("/checkout");
   };
 
-  // Defensive: cartItems may look like [{ product: {...actualProductFields}, quantity: 2 }, ...]
+
   const cartItemsDetailed = cartItems
-    .filter(item => item.product) // filter out any nulls (edge case)
+    .filter(item => item.product) 
     .map(item => ({
-      ...item.product,            // spread the product fields: _id, name, priceCents, etc
-      quantity: item.quantity     // keep quantity from the cart
+      ...item.product,            
+      quantity: item.quantity     
     }));
 
   const subtotal = cartItemsDetailed.reduce(
@@ -38,7 +38,7 @@ function Cart() {
             {cartItemsDetailed.map(prod => (
               <div key={prod._id} className="flex items-center mb-6 border-b pb-3">
                 <img
-                  src={`http://localhost:5005/${prod.image}`}
+                  src={`https://amazon-project-backend.vercel.app/${prod.image}`}
                   alt={prod.name}
                   className="w-20 h-20 object-contain rounded mr-4"
                 />

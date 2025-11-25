@@ -23,9 +23,9 @@ function ProductDetails() {
       setLoading(true);
       setError('');
       try {
-        const { data } = await axios.get(`http://localhost:5005/api/products/${id}`);
+        const { data } = await axios.get(`https://amazon-project-backend.vercel.app/api/products/${id}`);
         setProduct(data);
-        const allProductsRes = await axios.get('http://localhost:5005/api/products');
+        const allProductsRes = await axios.get('https://amazon-project-backend.vercel.app/api/products');
         const related = allProductsRes.data.filter(
           p => p.category === data.category && p._id !== id
         ).slice(0, 4);
@@ -70,11 +70,11 @@ function ProductDetails() {
     }
     try {
       await axios.post(
-        `http://localhost:5005/api/products/${product._id}/reviews`,
+        `https://amazon-project-backend.vercel.app/api/products/${product._id}/reviews`,
         reviewForm,
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      const { data } = await axios.get(`http://localhost:5005/api/products/${product._id}`);
+      const { data } = await axios.get(`https://amazon-project-backend.vercel.app/api/products/${product._id}`);
       setProduct(data);
       setReviewForm({ rating: 5, comment: '' });
     } catch (err) {
@@ -102,7 +102,7 @@ function ProductDetails() {
       <Navbar />
       <div className="max-w-3xl mx-auto mt-8 flex flex-col md:flex-row gap-8 bg-white rounded-xl shadow-md p-8">
         <div className="flex-1 flex justify-center items-start">
-          <img src={`http://localhost:5005/${product.image}`} alt={product.name} className="w-64 h-64 object-contain rounded shadow" />
+          <img src={`https://amazon-project-backend.vercel.app/${product.image}`} alt={product.name} className="w-64 h-64 object-contain rounded shadow" />
         </div>
         <div className="flex-1">
           <h2 className="text-2xl font-bold mb-2">{product.name}</h2>
@@ -177,7 +177,7 @@ function ProductDetails() {
           {relatedProducts.length > 0 ? (
             relatedProducts.map(rel => (
               <Link to={`/product/${rel._id}`} key={rel._id} className="bg-gray-50 rounded-lg p-3 text-center shadow hover:scale-105 transition">
-                <img src={`http://localhost:5005/${rel.image}`} alt={rel.name} className="w-24 h-24 object-contain mx-auto mb-2" />
+                <img src={`https://amazon-project-backend.vercel.app/${rel.image}`} alt={rel.name} className="w-24 h-24 object-contain mx-auto mb-2" />
                 <div className="font-medium text-sm mb-1">{rel.name}</div>
                 <div className="text-yellow-700 text-sm mb-1">{'★'.repeat(Math.floor(rel.rating?.stars || 0))}</div>
                 <div className="text-gray-900 font-bold text-base">₹{Math.round(rel.priceCents)}</div>
