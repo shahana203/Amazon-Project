@@ -27,10 +27,22 @@ router.post('/signup', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   const { email, mobile, password } = req.body;
+
   if (!email && !mobile) return res.status(400).json({ error: 'Enter email or mobile' });
+
+   if (!password) {
+    return res.status(400).json({ error: 'Password is required' });
+  }
 
   const user = await User.findOne({ $or: [{ email }, { mobile }] });
   if (!user) return res.status(400).json({ error: 'Invalid credentials' });
+
+  // ⚠ FIX 2: if the user was created by Google, password is undefined → prevent crash
+  if (!user.password) {
+    return res.status(400).json({
+      error: "This account was created using Google. Please login with Google."
+    });
+  }
 
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) return res.status(400).json({ error: 'Invalid credentials' });
@@ -55,6 +67,7 @@ router.post('/google-signin', async (req, res) => {
         name: payload.name,
         email: payload.email,
         photo: payload.picture,
+        password: undefined 
       });
     }
     const jwtToken = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
